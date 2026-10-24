@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#06182b" />
+<meta name="description" content="NEXUS Gestão — um ecossistema completo de gestão para o seu negócio." />
+<title>NEXUS Gestão — Gestão sem limites</title>
+<style>
+:root{
+  --bg:#061629;--bg2:#081d33;--panel:#0d2944;--line:rgba(153,210,255,.18);
+  --text:#f5f9ff;--muted:#b7c8dc;--cyan:#19d7e8;--blue:#278cff;--purple:#8c68ff;
+  --green:#35e2b0;--radius:22px;--shadow:0 22px 70px rgba(0,0,0,.32)
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5}
+a{color:inherit;text-decoration:none}
+button,input{font:inherit}
+button{cursor:pointer}
+.container{width:min(1180px,calc(100% - 44px));margin-inline:auto}
+.gradient-text{background:linear-gradient(100deg,#f7fbff 5%,#5ee9f3 45%,#9b81ff 95%);-webkit-background-clip:text;background-clip:text;color:transparent}
+header{position:sticky;top:0;z-index:20;background:rgba(4,17,31,.8);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.07)}
+.nav{height:78px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.2em;font-size:19px}
+.logo{width:38px;height:38px;display:grid;place-items:center;border-radius:11px;background:linear-gradient(140deg,var(--cyan),#1488ff 52%,var(--purple));font-size:26px;font-weight:900;letter-spacing:-.1em;box-shadow:0 0 28px rgba(25,215,232,.22)}
+.brand small{display:block;font-size:9px;letter-spacing:.52em;font-weight:600;color:#b8cde4;margin-top:-3px}
+.navlinks{display:flex;gap:28px;color:#c0d0e1;font-size:13px}
+.navlinks a:hover{color:white}
+.nav-actions{display:flex;gap:10px;align-items:center}
+.btn{border:1px solid rgba(190,222,255,.25);padding:11px 18px;border-radius:999px;background:rgba(255,255,255,.04);color:white;font-weight:650;font-size:13px;transition:.2s}
+.btn:hover{transform:translateY(-2px);border-color:var(--cyan)}
+.btn.primary{border:0;background:linear-gradient(100deg,#13cddd,#287cff 62%,#8665ff);box-shadow:0 8px 25px rgba(38,143,255,.23)}
+.menu-toggle{display:none}
+.hero{position:relative;overflow:hidden;padding:78px 0 68px;min-height:570px;background:radial-gradient(ellipse at 78% 34%,rgba(29,119,166,.28),transparent 36%),radial-gradient(ellipse at 48% 90%,rgba(22,201,220,.1),transparent 42%)}
+.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#061629 0%,rgba(6,22,41,.92) 35%,rgba(6,22,41,.15) 100%);pointer-events:none}
+.hero-grid{position:relative;display:grid;grid-template-columns:1fr 1.05fr;align-items:center;gap:36px}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;color:#8eeaf1;text-transform:uppercase;letter-spacing:.17em;font-size:10px;font-weight:800;margin-bottom:18px}
+.eyebrow:before{content:"";width:22px;height:2px;background:var(--cyan)}
+h1{font-size:clamp(38px,4.8vw,64px);line-height:1.04;letter-spacing:-.045em;margin:0 0 20px;max-width:600px}
+.hero-copy>p{font-size:17px;color:#c0d0e1;max-width:490px;margin:0 0 26px}
+.hero-buttons{display:flex;gap:12px;flex-wrap:wrap}
+.hero-proof{display:flex;gap:22px;flex-wrap:wrap;margin-top:35px;color:#d3e3f5;font-size:11px}
+.hero-proof span{display:flex;align-items:center;gap:7px}
+.hero-proof b{color:var(--cyan);font-size:17px}
+.hero-visual{min-height:385px;position:relative;display:grid;place-items:center}
+.orbit{position:absolute;width:390px;height:250px;border:1px solid rgba(25,215,232,.65);border-radius:50%;transform:rotate(-17deg);box-shadow:0 0 28px rgba(25,215,232,.1),inset 0 0 24px rgba(25,215,232,.07)}
+.orbit:after{content:"";position:absolute;width:8px;height:8px;background:#8cffff;border-radius:50%;left:10%;top:27%;box-shadow:0 0 18px #19d7e8}
+.person{position:relative;z-index:2;width:210px;height:315px;border-radius:110px 110px 28px 28px;background:linear-gradient(130deg,#243b52,#081322 66%);box-shadow:var(--shadow);overflow:hidden}
+.person:before{content:"";position:absolute;top:26px;left:65px;width:86px;height:102px;border-radius:50% 50% 42% 42%;background:linear-gradient(110deg,#d19a78,#704b43 65%,#342d38);box-shadow:0 -15px 0 8px #111a28}
+.person:after{content:"";position:absolute;bottom:-35px;left:12px;width:190px;height:235px;border-radius:80px 80px 0 0;background:linear-gradient(110deg,#152c40,#050d18);border-top:1px solid #2d536d}
+.float-card{position:absolute;z-index:4;background:rgba(8,31,53,.8);border:1px solid rgba(145,222,255,.45);backdrop-filter:blur(12px);border-radius:13px;padding:14px;box-shadow:0 15px 40px rgba(0,0,0,.22);min-width:145px}
+.float-card strong{font-size:11px;font-weight:650;display:block;margin-bottom:12px}
+.float-card small{color:#a8c5dc;font-size:9px}
+.card-sales{top:16px;left:0}.card-profit{top:54px;right:0}.card-clients{bottom:58px;left:8px}.card-manage{bottom:20px;right:16px}
+.bars{height:48px;display:flex;align-items:end;gap:5px;border-bottom:1px solid rgba(255,255,255,.2)}
+.bars i{display:block;width:12px;background:linear-gradient(#30dbe9,#287cff);border-radius:3px 3px 0 0}
+.bars i:nth-child(1){height:23%}.bars i:nth-child(2){height:35%}.bars i:nth-child(3){height:31%}.bars i:nth-child(4){height:53%}.bars i:nth-child(5){height:45%}.bars i:nth-child(6){height:70%}.bars i:nth-child(7){height:86%}
+.donut{width:48px;height:48px;border-radius:50%;margin:auto;border:8px solid #278cff;border-right-color:#19d7e8;border-bottom-color:#826bff;transform:rotate(-30deg)}
+.mini-icon{font-size:23px;color:var(--cyan);margin-right:8px}
+.section{padding:88px 0}
+.section-head{max-width:680px;margin-bottom:38px}
+.section-head h2{font-size:clamp(30px,3.6vw,45px);line-height:1.12;letter-spacing:-.035em;margin:0 0 15px}
+.section-head p{color:var(--muted);margin:0;max-width:600px}
+.features{background:linear-gradient(180deg,#081b30,#061629)}
+.feature-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+.feature{padding:24px 21px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,rgba(19,55,84,.64),rgba(7,26,45,.7));transition:.25s}
+.feature:hover{transform:translateY(-5px);border-color:rgba(25,215,232,.55)}
+.feature-icon{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:rgba(25,215,232,.1);color:#4be3ef;font-size:23px;margin-bottom:19px}
+.feature h3{font-size:16px;margin:0 0 8px}
+.feature p{font-size:12px;color:var(--muted);margin:0}
+.showcase{padding-top:74px}
+.showcase-grid{display:grid;grid-template-columns:.75fr 1.25fr;gap:50px;align-items:center}
+.showcase-copy h2{font-size:clamp(32px,3.6vw,46px);line-height:1.1;letter-spacing:-.04em;margin:0 0 20px}
+.showcase-copy p{color:var(--muted);font-size:14px;margin:0 0 24px}
+.benefits{display:grid;grid-template-columns:repeat(2,1fr);gap:13px;margin-top:28px}
+.benefit{border-top:1px solid var(--line);padding-top:14px;font-size:12px;color:#d8e8f7}
+.benefit span{display:block;font-size:23px;color:var(--cyan);margin-bottom:7px}
+.dashboard-wrap{position:relative;padding:15px;border-radius:25px;background:linear-gradient(140deg,#718ca5,#12273a 25%,#020913 90%);box-shadow:var(--shadow);transform:perspective(1200px) rotateY(-3deg)}
+.dashboard{background:#f7faff;color:#10243a;border-radius:14px;min-height:370px;overflow:hidden;display:grid;grid-template-columns:135px 1fr}
+.dash-side{background:#0b243d;color:#c5d9ec;padding:17px 10px}
+.dash-logo{font-size:12px;font-weight:900;letter-spacing:.1em;margin:0 0 20px;color:#fff}
+.dash-logo span{color:#21d6e4}
+.dash-menu{font-size:9px;padding:8px 7px;border-radius:6px;margin:3px 0;color:#c5d9ec}
+.dash-menu.active{background:#174364;color:#fff}
+.dash-main{padding:21px 18px}
+.dash-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:17px;font-size:10px}
+.dash-top strong{font-size:15px;display:block}
+.avatar{width:25px;height:25px;display:inline-grid;place-items:center;background:#dce8f5;border-radius:50%;margin-right:5px}
+.metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.metric{padding:12px;border:1px solid #e0e8f1;border-radius:9px;background:#fff}
+.metric small{display:block;color:#708196;font-size:8px}
+.metric strong{font-size:13px;display:block;margin:5px 0}
+.metric em{font-style:normal;color:#10a777;font-size:8px}
+.dash-bottom{display:grid;grid-template-columns:1.25fr .75fr;gap:10px;margin-top:11px}
+.chart,.tasks{background:white;border:1px solid #e0e8f1;border-radius:9px;padding:12px}
+.chart h4,.tasks h4{font-size:10px;margin:0 0 10px}
+.chart svg{width:100%;height:120px}
+.task{font-size:8px;padding:8px 0;border-bottom:1px solid #edf1f5;color:#506276}
+.task:before{content:"○";color:#299df0;font-size:13px;margin-right:7px}
+.mobile-app{position:absolute;left:-35px;bottom:-22px;width:115px;height:218px;background:linear-gradient(145deg,#162e47,#020812);border:4px solid #273c50;border-radius:24px;padding:10px;box-shadow:var(--shadow);color:#fff;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.mobile-app .logo{width:37px;height:37px;font-size:24px}
+.mobile-app strong{font-size:8px;letter-spacing:.2em;margin-top:8px}
+.mobile-app p{font-size:9px;margin:22px 0 14px}
+.mobile-app button{font-size:8px;border:0;border-radius:20px;padding:7px 18px;color:#fff;background:linear-gradient(90deg,#10d2dc,#4777ff)}
+.process{background:radial-gradient(ellipse at 50% 0,rgba(27,106,157,.15),transparent 55%),#081b30}
+.process-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.step{border:1px solid var(--line);padding:24px;border-radius:18px}
+.step-num{font-size:12px;color:var(--cyan);letter-spacing:.15em;font-weight:800}
+.step h3{margin:14px 0 8px;font-size:17px}.step p{font-size:13px;color:var(--muted);margin:0}
+.cta{padding:75px 0}
+.cta-box{padding:48px;border:1px solid rgba(80,209,237,.25);border-radius:26px;background:radial-gradient(ellipse at 100% 0,rgba(77,103,255,.25),transparent 40%),linear-gradient(120deg,#0c2a45,#0a1b30);display:flex;align-items:center;justify-content:space-between;gap:30px}
+.cta h2{font-size:clamp(28px,3.5vw,42px);line-height:1.12;margin:0 0 10px;letter-spacing:-.03em}.cta p{margin:0;color:var(--muted)}
+footer{border-top:1px solid rgba(255,255,255,.08);padding:28px 0;color:#91a8bf;font-size:11px}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;gap:20px}
+.footer-links{display:flex;gap:20px}
+.modal-backdrop{position:fixed;inset:0;background:rgba(0,8,17,.72);backdrop-filter:blur(8px);z-index:50;display:none;align-items:center;justify-content:center;padding:20px}
+.modal-backdrop.open{display:flex}
+.modal{width:min(420px,100%);background:#0b2239;border:1px solid rgba(155,218,255,.25);border-radius:22px;padding:28px;box-shadow:var(--shadow);position:relative}
+.modal h2{margin:0 0 7px;font-size:25px}.modal p{margin:0 0 22px;color:var(--muted);font-size:13px}
+.modal label{display:block;font-size:12px;color:#d6e7f7;margin:13px 0 6px}
+.modal input{width:100%;background:#061629;color:white;border:1px solid rgba(170,215,255,.22);border-radius:10px;padding:12px;outline:none}
+.modal input:focus{border-color:var(--cyan)}
+.modal .btn{width:100%;margin-top:18px}
+.close-modal{position:absolute;right:17px;top:14px;border:0;background:transparent;color:#c4d8ea;font-size:24px}
+.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);background:#e9fbff;color:#09243b;padding:12px 18px;border-radius:12px;box-shadow:var(--shadow);font-size:13px;opacity:0;pointer-events:none;transition:.25s;z-index:70}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:900px){
+ .navlinks{gap:15px}.hero-grid{grid-template-columns:1fr 1fr;gap:12px}.hero-visual{transform:scale(.88);margin-inline:-25px}.feature-grid{grid-template-columns:repeat(2,1fr)}
+ .showcase-grid{grid-template-columns:1fr;gap:45px}.showcase-copy{max-width:650px}.dashboard-wrap{margin-left:25px}.mobile-app{left:-25px}
+}
+@media(max-width:680px){
+ .container{width:min(100% - 30px,560px)}.nav{height:68px}.brand{font-size:16px}.nav-actions .btn:not(.primary){display:none}.menu-toggle{display:block;border:1px solid var(--line);border-radius:10px;background:transparent;color:#fff;padding:8px 11px}
+ .navlinks{display:none;position:absolute;top:68px;left:0;right:0;background:#071a2d;padding:18px 24px 22px;flex-direction:column;border-bottom:1px solid var(--line)}.navlinks.open{display:flex}
+ .hero{padding:54px 0 35px}.hero:before{background:linear-gradient(180deg,rgba(6,22,41,.3),#061629 82%)}.hero-grid{grid-template-columns:1fr}.hero-copy{z-index:3}.hero-copy>p{font-size:15px}.hero-visual{min-height:310px;transform:scale(.86);margin:-10px -30px -20px}.person{height:260px;width:175px}.orbit{width:320px;height:200px}.card-sales{left:3px;top:4px}.card-profit{right:2px;top:35px}.card-clients{left:0;bottom:40px}.card-manage{right:0;bottom:6px}
+ .hero-proof{gap:13px;margin-top:25px}.section{padding:64px 0}.feature-grid{gap:10px}.feature{padding:18px 15px}.feature h3{font-size:14px}.feature p{font-size:11px}
+ .dashboard-wrap{padding:8px;margin-left:0;transform:none}.dashboard{grid-template-columns:90px 1fr;min-height:290px}.dash-side{padding:12px 6px}.dash-logo{font-size:9px}.dash-menu{font-size:7px;padding:6px 4px}.dash-main{padding:13px 9px}.dash-top strong{font-size:12px}.metric{padding:7px}.metric strong{font-size:10px}.metric small{font-size:7px}.dash-bottom{grid-template-columns:1fr}.tasks{display:none}.chart svg{height:85px}.mobile-app{width:83px;height:155px;left:-9px;bottom:-25px;border-width:3px}.mobile-app .logo{width:28px;height:28px;font-size:18px}.mobile-app p{margin:12px 0 8px;font-size:7px}.mobile-app button{padding:5px 12px;font-size:7px}
+ .process-grid{grid-template-columns:1fr}.cta-box{padding:29px 23px;display:block}.cta-box .btn{margin-top:22px}.footer-inner{align-items:flex-start;flex-direction:column}.footer-links{flex-wrap:wrap}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <a class="brand" href="#inicio" aria-label="NEXUS Gestão início"><span class="logo">N</span><span>NEXUS<small>GESTÃO</small></span></a>
+    <nav class="navlinks" id="navlinks" aria-label="Navegação principal">
+      <a href="#solucoes">Soluções</a><a href="#plataforma">Plataforma</a><a href="#como-funciona">Como funciona</a>
+    </nav>
+    <div class="nav-actions"><button class="btn" data-modal="login">Entrar</button><button class="btn primary" data-modal="signup">Começar agora ↗</button><button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">☰</button></div>
+  </div>
+</header>
+<main>
+<section class="hero" id="inicio">
+ <div class="container hero-grid">
+  <div class="hero-copy">
+   <div class="eyebrow">Gestão inteligente para negócios</div>
+   <h1>Do seu primeiro passo <span class="gradient-text">ao seu próximo nível.</span></h1>
+   <p>A plataforma de gestão que cresce com o seu negócio. Organize processos, acompanhe resultados e tome decisões com confiança.</p>
+   <div class="hero-buttons"><button class="btn primary" data-modal="signup">Conheça a NEXUS <span aria-hidden="true">→</span></button><a class="btn" href="#solucoes">Explorar recursos</a></div>
+   <div class="hero-proof"><span><b>⌘</b> Mais controle</span><span><b>⚙</b> Mais eficiência</span><span><b>◎</b> Mais resultados</span><span><b>✧</b> Em qualquer nível</span></div>
+  </div>
+  <div class="hero-visual" aria-label="Ilustração de painel de gestão">
+   <div class="orbit"></div><div class="person"></div>
+   <div class="float-card card-sales"><strong>▥ &nbsp;Vendas</strong><div class="bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><small>↑ 18,6% este mês</small></div>
+   <div class="float-card card-profit"><strong>◉ &nbsp;Lucro</strong><div class="donut"></div><small>Meta alcançada</small></div>
+   <div class="float-card card-clients"><strong>♧ &nbsp;Clientes</strong><div style="font-size:25px;color:#20d9e8">♙ ♙ ♙</div><small>Clientes em crescimento</small></div>
+   <div class="float-card card-manage"><strong>▣ &nbsp;Gestão</strong><div style="font-size:26px;color:#20d9e8">☑</div><small>Tudo em um só lugar</small></div>
+  </div>
+ </div>
+</section>
+<section class="section features" id="solucoes">
+ <div class="container">
+  <div class="section-head"><div class="eyebrow">Um ecossistema completo</div><h2>As ferramentas certas para <span class="gradient-text">cada etapa do seu negócio.</span></h2><p>Da rotina operacional à visão estratégica, conecte as áreas da sua empresa em uma experiência simples e integrada.</p></div>
+  <div class="feature-grid">
+   <article class="feature"><div class="feature-icon">↗</div><h3>Financeiro</h3><p>Tenha uma visão clara de receitas, despesas, fluxo de caixa e resultados.</p></article>
+   <article class="feature"><div class="feature-icon">♙</div><h3>Vendas e clientes</h3><p>Acompanhe oportunidades, relacionamento e desempenho comercial.</p></article>
+   <article class="feature"><div class="feature-icon">▤</div><h3>Estoque e produtos</h3><p>Controle movimentações, níveis de estoque e cadastro de produtos.</p></article>
+   <article class="feature"><div class="feature-icon">♧</div><h3>Pessoas e processos</h3><p>Organize tarefas, responsabilidades e fluxos de trabalho.</p></article>
+   <article class="feature"><div class="feature-icon">▥</div><h3>Relatórios e BI</h3><p>Transforme dados em indicadores visuais para decidir melhor.</p></article>
+   <article class="feature"><div class="feature-icon">⌘</div><h3>Integrações e API</h3><p>Conecte suas ferramentas e mantenha os dados sincronizados.</p></article>
+   <article class="feature"><div class="feature-icon">✧</div><h3>Inteligência artificial</h3><p>Encontre padrões e receba insights para orientar suas próximas ações.</p></article>
+   <article class="feature"><div class="feature-icon">∞</div><h3>Feito para crescer</h3><p>Comece com o essencial e amplie a plataforma conforme sua necessidade.</p></article>
+  </div>
+ </div>
+</section>
+<section class="section showcase" id="plataforma">
+ <div class="container showcase-grid">
+  <div class="showcase-copy">
+   <div class="eyebrow">Sua empresa, conectada</div>
+   <h2>Mais do que um sistema, <span class="gradient-text">um parceiro de crescimento.</span></h2>
+   <p>A NEXUS Gestão foi pensada para ser inteligente, segura e flexível. Acompanhe o que acontece na sua empresa pelo computador ou celular, com as informações importantes sempre à mão.</p>
+   <a class="btn primary" href="#como-funciona">Veja como funciona →</a>
+   <div class="benefits"><div class="benefit"><span>♧</span><strong>Escalável</strong><br>para o seu ritmo</div><div class="benefit"><span>⛨</span><strong>Segura</strong><br>em todos os níveis</div><div class="benefit"><span>☁</span><strong>Conectada</strong><br>ao seu setor</div><div class="benefit"><span>∞</span><strong>Sempre</strong><br>com você</div></div>
+  </div>
+  <div class="dashboard-wrap">
+   <div class="dashboard">
+    <aside class="dash-side"><div class="dash-logo"><span>✦</span> NEXUS<small style="display:block;font-size:6px;letter-spacing:.25em">GESTÃO</small></div><div class="dash-menu active">⌂ &nbsp; Início</div><div class="dash-menu">＄ &nbsp; Financeiro</div><div class="dash-menu">↗ &nbsp; Vendas</div><div class="dash-menu">♙ &nbsp; Clientes</div><div class="dash-menu">▤ &nbsp; Produtos</div><div class="dash-menu">▦ &nbsp; Estoque</div><div class="dash-menu">▥ &nbsp; Relatórios</div><div class="dash-menu">⚙ &nbsp; Configurações</div></aside>
+    <div class="dash-main"><div class="dash-top"><div><strong>Olá, Maria!</strong><span style="color:#718298;font-size:8px">Aqui está o resumo do seu negócio hoje.</span></div><div><span class="avatar">👩🏻</span><span style="font-size:8px">Maria Silva</span></div></div>
+     <div class="metric-grid"><div class="metric"><small>Faturamento</small><strong>R$ 48.750,00</strong><em>↑ 12% no mês</em></div><div class="metric"><small>Despesas</small><strong>R$ 21.340,00</strong><em style="color:#e66b77">↓ 8% no mês</em></div><div class="metric"><small>Lucro</small><strong>R$ 27.410,00</strong><em>↑ 16% no mês</em></div></div>
+     <div class="dash-bottom"><div class="chart"><h4>Evolução das vendas</h4><svg viewBox="0 0 330 120" preserveAspectRatio="none" role="img" aria-label="Gráfico ilustrativo de vendas"><defs><linearGradient id="area" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#278cff" stop-opacity=".25"/><stop offset="1" stop-color="#278cff" stop-opacity="0"/></linearGradient></defs><path d="M0 96 C25 83 30 89 48 72 S75 83 94 61 S124 69 145 45 S176 68 195 52 S220 63 241 31 S273 51 294 22 S316 37 330 15 L330 120 L0 120Z" fill="url(#area)"/><path d="M0 96 C25 83 30 89 48 72 S75 83 94 61 S124 69 145 45 S176 68 195 52 S220 63 241 31 S273 51 294 22 S316 37 330 15" fill="none" stroke="#278cff" stroke-width="2.5"/><g fill="#7a8da3" font-size="8"><text x="0" y="116">Jan</text><text x="75" y="116">Mar</text><text x="150" y="116">Mai</text><text x="225" y="116">Jul</text><text x="300" y="116">Set</text></g></svg></div><div class="tasks"><h4>Tarefas de hoje</h4><div class="task">Entrar em contato com cliente</div><div class="task">Reunião de equipe</div><div class="task">Aprovar orçamento</div><div class="task">Verificar estoque</div></div></div>
+    </div>
+   </div>
+   <div class="mobile-app"><span class="logo">N</span><strong>NEXUS GESTÃO</strong><p>Seu negócio<br>em suas mãos.</p><button data-modal="login">Entrar</button></div>
+  </div>
+ </div>
+</section>
+<section class="section process" id="como-funciona">
+ <div class="container"><div class="section-head"><div class="eyebrow">Simples desde o início</div><h2>Comece hoje. <span class="gradient-text">Evolua no seu tempo.</span></h2><p>Uma experiência pensada para facilitar sua rotina, sem complicar o que já funciona.</p></div>
+  <div class="process-grid"><article class="step"><div class="step-num">01 / ORGANIZE</div><h3>Reúna suas informações</h3><p>Centralize os dados importantes e entenda melhor o cenário atual da sua empresa.</p></article><article class="step"><div class="step-num">02 / ACOMPANHE</div><h3>Veja tudo em tempo real</h3><p>Use indicadores e relatórios para acompanhar o que está funcionando.</p></article><article class="step"><div class="step-num">03 / CRESÇA</div><h3>Tome decisões melhores</h3><p>Encontre oportunidades, ajuste processos e evolua com mais segurança.</p></article></div>
+ </div>
+</section>
+<section class="cta"><div class="container"><div class="cta-box"><div><div class="eyebrow">Seu próximo nível começa aqui</div><h2>Gestão sem limites.</h2><p>Mais clareza para decidir. Mais tempo para fazer seu negócio crescer.</p></div><button class="btn primary" data-modal="signup">Quero conhecer a NEXUS ↗</button></div></div></section>
+</main>
+<footer><div class="container footer-inner"><a class="brand" href="#inicio"><span class="logo">N</span><span>NEXUS<small>GESTÃO</small></span></a><span>© <span id="year"></span> NEXUS Gestão. Demonstração de interface.</span><div class="footer-links"><a href="#solucoes">Soluções</a><a href="#plataforma">Plataforma</a><a href="#inicio">Voltar ao topo ↑</a></div></div></footer>
+<div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal"><button class="close-modal" id="closeModal" aria-label="Fechar">×</button><h2 id="modalTitle">Bem-vindo à NEXUS</h2><p id="modalDescription">Acesse sua conta para continuar.</p><form id="demoForm"><label for="email">E-mail</label><input id="email" name="email" type="email" placeholder="voce@empresa.com" required/><div id="passwordField"><label for="password">Senha</label><input id="password" name="password" type="password" placeholder="Sua senha" minlength="4" required/></div><button class="btn primary" type="submit" id="formSubmit">Entrar</button></form></div></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+const $ = (s, root=document) => root.querySelector(s);
+const backdrop = $('#modalBackdrop');
+const toast = $('#toast');
+let toastTimer;
+function showToast(message){toast.textContent=message;toast.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('show'),3200)}
+function openModal(type){
+ const signup=type==='signup';
+ $('#modalTitle').textContent=signup?'Comece com a NEXUS':'Acesse sua conta';
+ $('#modalDescription').textContent=signup?'Deixe seu e-mail para iniciar uma demonstração da plataforma.':'Entre na sua conta para continuar.';
+ $('#passwordField').style.display=signup?'none':'block';
+ $('#password').required=!signup;
+ $('#formSubmit').textContent=signup?'Solicitar demonstração':'Entrar';
+ backdrop.classList.add('open');document.body.style.overflow='hidden';setTimeout(()=>$('#email').focus(),80);
+}
+function closeModal(){backdrop.classList.remove('open');document.body.style.overflow=''}
+document.querySelectorAll('[data-modal]').forEach(btn=>btn.addEventListener('click',()=>openModal(btn.dataset.modal)));
+$('#closeModal').addEventListener('click',closeModal);
+backdrop.addEventListener('click',e=>{if(e.target===backdrop)closeModal()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+$('#demoForm').addEventListener('submit',e=>{e.preventDefault();const signup=$('#passwordField').style.display==='none';const email=$('#email').value;closeModal();showToast(signup?`Solicitação de demonstração preparada para ${email}. Conecte um backend para receber os pedidos.`:'Esta é uma demonstração visual. A autenticação precisa ser conectada ao seu sistema.');e.target.reset()});
+$('#menuToggle').addEventListener('click',()=>$('#navlinks').classList.toggle('open'));
+document.querySelectorAll('#navlinks a').forEach(a=>a.addEventListener('click',()=>$('#navlinks').classList.remove('open')));
+$('#year').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
